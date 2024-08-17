@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var jump_velocity = -1000.0
 @export var slippery = 40.0
 @export var camera : Camera2D
-@export var camera_speed = 30
+@export var camera_speed = 20
 
 func _physics_process(delta: float) -> void :
 	# Add the gravity.
@@ -35,12 +35,18 @@ func _physics_process(delta: float) -> void :
 	else :
 		camera.position.x = move_toward(camera.position.x, position.x + 480, camera_speed)
 	
+	#ANIMATIONS
 	if(velocity.x == 0) :
 		$Sprite2D/AnimationPlayer.play("Idle")
 	else :
 		$Sprite2D/AnimationPlayer.play("Run")
 		$Sprite2D/AnimationPlayer.speed_scale = velocity.x / speed
+	if(Input.is_action_pressed("Left") && velocity.x > 0 || Input.is_action_pressed("Right") && velocity.x < 0) :
+		$Sprite2D/AnimationPlayer.play("Turn")
 	if(!is_on_floor()) :
-		$Sprite2D/AnimationPlayer.play("Jump")
+		if(velocity.y < 0) :
+			$Sprite2D/AnimationPlayer.play("Jump")
+		else :
+			$Sprite2D/AnimationPlayer.play("Fall")
 	
 	move_and_slide()
