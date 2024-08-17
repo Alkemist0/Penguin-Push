@@ -70,7 +70,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.075),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("2_4lf7k"), ExtResource("3_y8eq3")]
+"values": [ExtResource("3_y8eq3"), ExtResource("2_4lf7k")]
 }
 
 [sub_resource type="Animation" id="Animation_bwfoi"]
@@ -116,7 +116,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqggl"]
-size = Vector2(103, 172)
+size = Vector2(103, 142)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_iqlg7")
@@ -129,8 +129,8 @@ texture = ExtResource("2_4lf7k")
 libraries = {
 "": SubResource("AnimationLibrary_5wj3b")
 }
-autoplay = "Run"
+autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 14)
+position = Vector2(0.5, 27)
 shape = SubResource("RectangleShape2D_mqggl")

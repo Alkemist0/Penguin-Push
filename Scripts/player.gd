@@ -24,16 +24,20 @@ func _physics_process(delta: float) -> void :
 		velocity.x = move_toward(velocity.x, 0, speed/slippery)
 	
 	#Flip sprite if facing other direction
-	if(direction > 0) :
+	if(velocity.x > 0) :
 		$Sprite2D.flip_h = false
-	if(direction < 0) :
+	if(velocity.x < 0) :
 		$Sprite2D.flip_h = true
 	
-	#Move camera to be in front of player
-	if($Sprite2D.flip_h) :
-		camera.position.x = move_toward(camera.position.x, position.x - 480, camera_speed)
-	else :
-		camera.position.x = move_toward(camera.position.x, position.x + 480, camera_speed)
+	
+	##Move camera to be in front of player
+	#if($Sprite2D.flip_h) :
+		#camera.position.x = move_toward(camera.position.x, position.x - 480, camera_speed)
+	#else :
+		#camera.position.x = move_toward(camera.position.x, position.x + 480, camera_speed)
+	camera.position.x = position.x
+	
+	move_and_slide()
 	
 	#ANIMATIONS
 	if(velocity.x == 0) :
@@ -48,5 +52,3 @@ func _physics_process(delta: float) -> void :
 			$Sprite2D/AnimationPlayer.play("Jump")
 		else :
 			$Sprite2D/AnimationPlayer.play("Fall")
-	
-	move_and_slide()
