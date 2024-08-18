@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=4 uid="uid://bhvpm4h3hiwn5"]
 
-[ext_resource type="Texture2D" uid="uid://51lbpdk7q6h7" path="res://Sprites/1-1.png" id="1_aguju"]
+[ext_resource type="Texture2D" uid="uid://bfgslo1g6q77g" path="res://Sprites/1-1.png" id="1_aguju"]
 [ext_resource type="PackedScene" uid="uid://6dnl3pr0knfa" path="res://Scenes/player.tscn" id="1_kcbtk"]
-[ext_resource type="Texture2D" uid="uid://cspbufkkynuaw" path="res://Sprites/1-1ice.png" id="2_r8udq"]
+[ext_resource type="Texture2D" uid="uid://b2cha2lvwhpks" path="res://Sprites/1-1ice.png" id="2_r8udq"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5jqh7"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rpx4r"]
 texture = ExtResource("1_aguju")
 texture_region_size = Vector2i(1000, 1000)
 0:0/0 = 0
@@ -51,13 +51,12 @@ texture_region_size = Vector2i(1000, 1000)
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
 1:4/0 = 0
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
 3:4/0 = 0
 3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
-4:4/0 = 0
-4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
-2:4/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_atdw7"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rbb5h"]
 texture = ExtResource("2_r8udq")
 texture_region_size = Vector2i(1000, 1000)
 0:0/0 = 0
@@ -109,11 +108,11 @@ texture_region_size = Vector2i(1000, 1000)
 3:4/0 = 0
 3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -500, 500, -500, 500, 500, -500, 500)
 
-[sub_resource type="TileSet" id="TileSet_i2j4d"]
+[sub_resource type="TileSet" id="TileSet_5h3c3"]
 tile_size = Vector2i(1000, 1000)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_5jqh7")
-sources/1 = SubResource("TileSetAtlasSource_atdw7")
+sources/0 = SubResource("TileSetAtlasSource_rpx4r")
+sources/1 = SubResource("TileSetAtlasSource_rbb5h")
 
 [node name="Game" type="Node2D"]
 
@@ -122,8 +121,8 @@ sources/1 = SubResource("TileSetAtlasSource_atdw7")
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(5.96046e-08, 0)
 scale = Vector2(0.1, 0.1)
-tile_map_data = PackedByteArray("AAD7/wIAAQADAAEAAAD8/wEAAQAEAAAAAAD8/wMAAQAEAAIAAAD6/wMAAQACAAIAAAD6/wEAAQACAAAAAAD7/wEAAQAAAAMAAAD8/wIAAQADAAQAAAD7/wMAAQAAAAQAAAD6/wIAAQACAAQAAAD9/wIAAQADAAMAAAD7/wAAAQABAAMAAAD7/wQAAQABAAMAAAD5/wIAAQADAAMAAAD+/wIAAQAEAAMAAAD4/wIAAQACAAMAAAD7////AQABAAIAAAD7/wUAAQABAAQAAAACAAMAAAADAAAAAAABAAMAAAABAAAAAAADAAMAAAAAAAAAAAADAAIAAAACAAEAAAABAAIAAAAEAAEAAAACAAEAAAADAAIAAAABAAEAAAABAAEAAAADAAEAAAAAAAEAAAA=")
-tile_set = SubResource("TileSet_i2j4d")
+tile_map_data = PackedByteArray("AAD7/wIAAQADAAEAAAD8/wEAAQAEAAAAAAD8/wMAAQAEAAIAAAD6/wMAAQACAAIAAAD6/wEAAQACAAAAAAD7/wEAAQAAAAMAAAD8/wIAAQADAAQAAAD7/wMAAQAAAAQAAAD6/wIAAQACAAQAAAD9/wIAAQADAAMAAAD7/wAAAQABAAMAAAD7/wQAAQABAAMAAAD5/wIAAQADAAMAAAD+/wIAAQAEAAMAAAD4/wIAAQACAAMAAAD7////AQABAAIAAAD7/wUAAQABAAQAAAACAAMAAAADAAAAAAABAAMAAAABAAAAAAADAAMAAAAAAAAAAAADAAIAAAACAAEAAAABAAIAAAAEAAEAAAACAAEAAAADAAIAAAABAAEAAAABAAEAAAADAAEAAAAAAAEAAAD//wIAAQADAAEAAAAAAAIAAQADAAEAAAA=")
+tile_set = SubResource("TileSet_5h3c3")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_kcbtk")]
 jump_velocity = -1100.0
