@@ -26,8 +26,10 @@ func _physics_process(delta: float) -> void :
 	#Flip sprite if facing other direction
 	if(velocity.x > 0) :
 		$Sprite2D.flip_h = false
+		$FloorChecker.scale = Vector2(1, 1)
 	if(velocity.x < 0) :
 		$Sprite2D.flip_h = true
+		$FloorChecker.scale = Vector2(-1, 1)
 	
 	
 	##Move camera to be in front of player
@@ -40,15 +42,23 @@ func _physics_process(delta: float) -> void :
 	move_and_slide()
 	
 	#ANIMATIONS
-	if(velocity.x == 0) :
-		$Sprite2D/AnimationPlayer.play("Idle")
+	if(!$FloorChecker.has_overlapping_bodies()) :
+		$Sprite2D/AnimationPlayer.play("Balance")
 	else :
-		$Sprite2D/AnimationPlayer.play("Run")
-		$Sprite2D/AnimationPlayer.speed_scale = velocity.x / speed
+		if(velocity.x != 0) :
+			$Sprite2D/AnimationPlayer.play("Run")
+			$Sprite2D/AnimationPlayer.speed_scale = velocity.x / speed
+		else :
+			$Sprite2D/AnimationPlayer.play("Idle")
+	
 	if(Input.is_action_pressed("Left") && velocity.x > 0 || Input.is_action_pressed("Right") && velocity.x < 0) :
 		$Sprite2D/AnimationPlayer.play("Turn")
+	
 	if(!is_on_floor()) :
 		if(velocity.y < 0) :
 			$Sprite2D/AnimationPlayer.play("Jump")
 		else :
 			$Sprite2D/AnimationPlayer.play("Fall")
+	
+	if(velocity.x == 0) :
+		$Sprite2D/AnimationPlayer.speed_scale = 1
