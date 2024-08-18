@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba6jpse5s2eak"]
+
+[ext_resource type="Script" path="res://Scripts/snowball.gd" id="1_0qrfn"]
+[ext_resource type="Texture2D" uid="uid://0cwjlvoxoqi0" path="res://shape_circle.svg" id="1_s1tkn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_koiyg"]
+radius = 100.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcto2"]
+size = Vector2(2, 200)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_csprh"]
+radius = 100.0
+
+[node name="Snowball" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 2
+mass = 100.0
+script = ExtResource("1_0qrfn")
+push_force = 750
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_s1tkn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_koiyg")
+
+[node name="PushRight" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PushRight"]
+position = Vector2(-100, 0)
+shape = SubResource("RectangleShape2D_dcto2")
+
+[node name="PushLeft" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PushLeft"]
+position = Vector2(100, 0)
+shape = SubResource("RectangleShape2D_dcto2")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("CircleShape2D_csprh")

@@ -10,6 +10,24 @@
 [ext_resource type="Texture2D" uid="uid://b8fterryingwp" path="res://Sprites/chr_blnc2.png" id="8_8655o"]
 [ext_resource type="Texture2D" uid="uid://cvypu2khuie7r" path="res://Sprites/chr_blnc1.png" id="9_kelc8"]
 
+[sub_resource type="Animation" id="Animation_qgp58"]
+resource_name = "Balance"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("8_8655o"), ExtResource("9_kelc8")]
+}
+
 [sub_resource type="Animation" id="Animation_bwfoi"]
 resource_name = "Fall"
 length = 0.001
@@ -107,24 +125,6 @@ tracks/0/keys = {
 "values": [ExtResource("7_pv3ow")]
 }
 
-[sub_resource type="Animation" id="Animation_qgp58"]
-resource_name = "Balance"
-length = 0.8
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("8_8655o"), ExtResource("9_kelc8")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5wj3b"]
 _data = {
 "Balance": SubResource("Animation_qgp58"),
@@ -144,7 +144,7 @@ height = 142.0
 size = Vector2(78, 0.25)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_iqlg7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -162,7 +162,7 @@ position = Vector2(0, 27)
 shape = SubResource("CapsuleShape2D_jrl64")
 
 [node name="FloorChecker" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorChecker"]
 position = Vector2(29, 98)
