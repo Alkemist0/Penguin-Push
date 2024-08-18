@@ -1,20 +1,23 @@
 extends RigidBody2D
 
-@export var push_force = 100
+@export var push_force = 500.0
+var size = 1.0
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	change_size(4)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$PushLeft.global_rotation_degrees = 0
 	$PushRight.global_rotation_degrees = 0
-	$AnimatableBody2D.global_rotation_degrees = 0
-	$AnimatableBody2D.global_position = position
 	
 	if($PushLeft.has_overlapping_bodies()) :
-		linear_velocity.x = -push_force
+		linear_velocity.x = -push_force / size
 	if($PushRight.has_overlapping_bodies()) :
-		linear_velocity.x = push_force
+		linear_velocity.x = push_force / size
+	
+	#$AnimatableBody2D.global_rotation_degrees = 0
+	$AnimatableBody2D.global_position = position
+
+func change_size(new_size : int) :
+	$AnimationPlayer.play("Size" + str(new_size))
+	size = new_size

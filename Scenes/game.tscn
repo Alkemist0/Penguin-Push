@@ -127,6 +127,7 @@ tile_set = SubResource("TileSet_rrexp")
 
 [node name="Snowball" parent="." instance=ExtResource("4_uwiu2")]
 position = Vector2(421, 17)
+push_force = 500.0
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_kcbtk")]
 jump_velocity = -1100.0
