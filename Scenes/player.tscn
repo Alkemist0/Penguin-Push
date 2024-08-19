@@ -163,7 +163,7 @@ size = Vector2(66, 142)
 size = Vector2(78, 0.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ram6"]
-size = Vector2(20, 109)
+size = Vector2(20, 93)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 10
@@ -194,5 +194,14 @@ shape = SubResource("RectangleShape2D_flu1s")
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SnowballChecker"]
-position = Vector2(43, 10.5)
+position = Vector2(43, 18.5)
 shape = SubResource("RectangleShape2D_1ram6")
+
+[node name="Coyote" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="JumpBuffer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="Coyote" to="." method="_on_coyote_timeout"]
+[connection signal="timeout" from="JumpBuffer" to="." method="_on_jump_buffer_timeout"]
