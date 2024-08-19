@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://bhvpm4h3hiwn5"]
+[gd_scene load_steps=12 format=4 uid="uid://bhvpm4h3hiwn5"]
 
+[ext_resource type="Texture2D" uid="uid://lgrlilayc61c" path="res://Sprites/background_temp.png" id="1_4vo68"]
 [ext_resource type="Texture2D" uid="uid://dh0y7j2b7fpty" path="res://Sprites/1-1.png" id="1_aguju"]
 [ext_resource type="PackedScene" uid="uid://6dnl3pr0knfa" path="res://Scenes/player.tscn" id="1_kcbtk"]
 [ext_resource type="Texture2D" uid="uid://dxbj7n6y1d1c" path="res://Sprites/1-1ice.png" id="2_r8udq"]
@@ -125,6 +126,9 @@ sources/2 = SubResource("TileSetAtlasSource_gs6lk")
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+texture = ExtResource("1_4vo68")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(5.96046e-08, 0)

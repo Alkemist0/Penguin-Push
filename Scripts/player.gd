@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void :
 		#camera.position.x = move_toward(camera.position.x, position.x - 480, camera_speed)
 	#else :
 		#camera.position.x = move_toward(camera.position.x, position.x + 480, camera_speed)
-	camera.position.x = position.x
+	camera.position.x = position.x + 480
 	
 	move_and_slide()
 	
