@@ -2,31 +2,45 @@ extends CharacterBody2D
 
 @export var gravity_modifier = 2.0
 @export var speed = 1000.0
-@export var jump_velocity = -1000.0
+@export var jump_velocity = -850.0
 @export var slippery = 40.0
 @export var camera : Camera2D
 #@export var camera_speed = 20
 var coyote_time = false
 var last_floor = false
-var jump_buffer
+var jump_buffer = false
+var jumping = false
 
 func _physics_process(delta: float) -> void :
 	# Add the gravity.
-	if(!is_on_floor()) :
+	if(is_on_floor()) :
+		jumping = false
+		$TallJump.stop()
+	else :
 		velocity += get_gravity() * gravity_modifier * delta
-		
+	
 	# Handle jump.
 	if(Input.is_action_pressed("Jump")) :
 		if(is_on_floor() || coyote_time) :
 			velocity.y = jump_velocity
+			jumping = true
 			coyote_time = false
+			$TallJump.start()
 		else :
 			$JumpBuffer.start()
 			jump_buffer = true
+		
+		if($TallJump.time_left > 0) :
+			velocity.y += jump_velocity * delta
 	
 	if(jump_buffer && is_on_floor()) :
 		velocity.y = jump_velocity
+		jumping = true
 		coyote_time = false
+		$TallJump.start()
+	
+	if(velocity.y > 0 || !Input.is_action_pressed("Jump")) :
+		$TallJump.stop()
 	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("Left", "Right")

@@ -203,5 +203,8 @@ wait_time = 0.2
 [node name="JumpBuffer" type="Timer" parent="."]
 wait_time = 0.2
 
+[node name="TallJump" type="Timer" parent="."]
+wait_time = 0.3
+
 [connection signal="timeout" from="Coyote" to="." method="_on_coyote_timeout"]
 [connection signal="timeout" from="JumpBuffer" to="." method="_on_jump_buffer_timeout"]

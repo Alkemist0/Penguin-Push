@@ -148,5 +148,4 @@ position = Vector2(1492, 118)
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_kcbtk")]
 position = Vector2(-111, 13)
-jump_velocity = -1100.0
 camera = NodePath("../Camera2D")
