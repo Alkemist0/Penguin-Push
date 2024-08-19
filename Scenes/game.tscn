@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://bhvpm4h3hiwn5"]
+[gd_scene load_steps=11 format=4 uid="uid://bhvpm4h3hiwn5"]
 
 [ext_resource type="Texture2D" uid="uid://dh0y7j2b7fpty" path="res://Sprites/1-1.png" id="1_aguju"]
 [ext_resource type="PackedScene" uid="uid://6dnl3pr0knfa" path="res://Scenes/player.tscn" id="1_kcbtk"]
 [ext_resource type="Texture2D" uid="uid://dxbj7n6y1d1c" path="res://Sprites/1-1ice.png" id="2_r8udq"]
 [ext_resource type="PackedScene" uid="uid://ba6jpse5s2eak" path="res://Scenes/snowball.tscn" id="4_uwiu2"]
 [ext_resource type="PackedScene" uid="uid://cpuvq8ea7787t" path="res://Scenes/snowball_enemy.tscn" id="5_vmh5n"]
+[ext_resource type="PackedScene" uid="uid://cquhqp5aciqyg" path="res://Scenes/spring.tscn" id="6_1b1m7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ij1sf"]
 texture = ExtResource("1_aguju")
@@ -149,3 +150,6 @@ position = Vector2(1492, 118)
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_kcbtk")]
 position = Vector2(-111, 13)
 camera = NodePath("../Camera2D")
+
+[node name="Spring" parent="." instance=ExtResource("6_1b1m7")]
+position = Vector2(1900, 350)

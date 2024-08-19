@@ -495,7 +495,7 @@ shape = SubResource("CircleShape2D_csprh")
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 16
+collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
 shape = SubResource("CircleShape2D_csprh")

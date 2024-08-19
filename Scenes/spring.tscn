@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=3 uid="uid://cquhqp5aciqyg"]
+
+[ext_resource type="Script" path="res://Scripts/spring.gd" id="1_gxo4m"]
+[ext_resource type="Texture2D" uid="uid://bunvh8uqkb2xt" path="res://Sprites/tpln_l1.png" id="2_4bmtp"]
+[ext_resource type="Texture2D" uid="uid://bknleabmf6x0g" path="res://Sprites/tpln_l2.png" id="3_o6ir8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwudm"]
+size = Vector2(200, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42o4y"]
+size = Vector2(200, 20)
+
+[sub_resource type="Animation" id="Animation_45mle"]
+resource_name = "Closed"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4bmtp")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -3.8147e-06)]
+}
+
+[sub_resource type="Animation" id="Animation_ymbvq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4bmtp")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -50)]
+}
+
+[sub_resource type="Animation" id="Animation_7w8y6"]
+resource_name = "Open"
+length = 0.125
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.025, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, -50), Vector2(0, -3.8147e-06)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.025, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_o6ir8"), ExtResource("2_4bmtp")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c5xra"]
+_data = {
+"Closed": SubResource("Animation_45mle"),
+"Open": SubResource("Animation_7w8y6"),
+"RESET": SubResource("Animation_ymbvq")
+}
+
+[node name="Spring" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 21
+script = ExtResource("1_gxo4m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -50)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_4bmtp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wwudm")
+
+[node name="SnowballDetector" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SnowballDetector"]
+position = Vector2(0, -60)
+shape = SubResource("RectangleShape2D_42o4y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c5xra")
+}
+autoplay = "Closed"
+
+[connection signal="area_entered" from="SnowballDetector" to="." method="_on_snowball_detector_area_entered"]
