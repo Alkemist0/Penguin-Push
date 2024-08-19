@@ -4,7 +4,7 @@ extends RigidBody2D
 var size = 1.0
 
 func _ready() -> void:
-	change_size(4)
+	change_size(3)
 
 func _process(_delta: float) -> void:
 	$PushLeft.global_rotation_degrees = 0
