@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://daefy5lnhl731"]
+
+[ext_resource type="AudioStream" uid="uid://bj11oxh8e1xeg" path="res://Sound/Music/WinterTheme.wav" id="1_hrkqa"]
+
+[node name="Global" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_hrkqa")
+autoplay = true

@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://6dnl3pr0knfa"]
+[gd_scene load_steps=34 format=3 uid="uid://6dnl3pr0knfa"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_iqlg7"]
 [ext_resource type="Texture2D" uid="uid://dsgr4jn5nxk5j" path="res://Sprites/chr_r1.png" id="2_4lf7k"]
+[ext_resource type="AudioStream" uid="uid://qhkyvy456dsd" path="res://Sound/step1.wav" id="2_7upb1"]
 [ext_resource type="Texture2D" uid="uid://dgrq8ds0ji7tt" path="res://Sprites/chr_r2.png" id="3_y8eq3"]
 [ext_resource type="Texture2D" uid="uid://jigwwt7otjny" path="res://Sprites/chr_i1.png" id="4_xk221"]
 [ext_resource type="Texture2D" uid="uid://c7vx7a8ydgm5o" path="res://Sprites/chr_j1.png" id="5_52vos"]
@@ -11,6 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://cvypu2khuie7r" path="res://Sprites/chr_blnc1.png" id="9_kelc8"]
 [ext_resource type="Texture2D" uid="uid://fgecyel5gpyf" path="res://Sprites/chr_g2.png" id="10_w6t8f"]
 [ext_resource type="Texture2D" uid="uid://byemgkoyxwxll" path="res://Sprites/chr_g1.png" id="11_6pjar"]
+[ext_resource type="Script" path="res://Scripts/sound_player.gd" id="13_qgfp1"]
+[ext_resource type="AudioStream" uid="uid://4xskv6rrjix4" path="res://Sound/jump_retrostyle_effect1.wav" id="14_cqbpa"]
+[ext_resource type="AudioStream" uid="uid://btuqts7j4fsq1" path="res://Sound/step2.wav" id="14_wehbr"]
+[ext_resource type="AudioStream" uid="uid://c3k6etf5qvkfo" path="res://Sound/step3.wav" id="15_asrto"]
+[ext_resource type="AudioStream" uid="uid://dv70xq3td6l45" path="res://Sound/step4.wav" id="16_680ti"]
+[ext_resource type="AudioStream" uid="uid://6da845bqud8p" path="res://Sound/step5.wav" id="17_2ycp5"]
+[ext_resource type="AudioStream" uid="uid://bdnc7f550k0hg" path="res://Sound/jump_retrostyle_effect2.wav" id="19_1wvm2"]
+[ext_resource type="AudioStream" uid="uid://co3rni05wmq3f" path="res://Sound/jump_retrostyle_effect3.wav" id="20_fyvyu"]
+[ext_resource type="AudioStream" uid="uid://csd0qa7qnpvq2" path="res://Sound/jump_retrostyle_effect4.wav" id="21_kg7ht"]
 
 [sub_resource type="Animation" id="Animation_qgp58"]
 resource_name = "Balance"
@@ -168,6 +178,7 @@ size = Vector2(20, 93)
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 10
 script = ExtResource("1_iqlg7")
+step_sound = ExtResource("2_7upb1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
@@ -205,6 +216,16 @@ wait_time = 0.2
 
 [node name="TallJump" type="Timer" parent="."]
 wait_time = 0.3
+
+[node name="StepSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_7upb1")
+script = ExtResource("13_qgfp1")
+sounds = Array[AudioStreamWAV]([ExtResource("2_7upb1"), ExtResource("14_wehbr"), ExtResource("15_asrto"), ExtResource("16_680ti"), ExtResource("17_2ycp5")])
+
+[node name="JumpSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_7upb1")
+script = ExtResource("13_qgfp1")
+sounds = Array[AudioStreamWAV]([ExtResource("14_cqbpa"), ExtResource("19_1wvm2"), ExtResource("20_fyvyu"), ExtResource("21_kg7ht")])
 
 [connection signal="timeout" from="Coyote" to="." method="_on_coyote_timeout"]
 [connection signal="timeout" from="JumpBuffer" to="." method="_on_jump_buffer_timeout"]

@@ -11,6 +11,8 @@ var last_floor = false
 var jump_buffer = false
 var jumping = false
 
+@export var step_sound : AudioStreamWAV
+
 func _physics_process(delta: float) -> void :
 	# Add the gravity.
 	if(is_on_floor()) :
@@ -25,6 +27,7 @@ func _physics_process(delta: float) -> void :
 			velocity.y = jump_velocity
 			jumping = true
 			coyote_time = false
+			$JumpSounds.play_sound()
 			$TallJump.start()
 		else :
 			$JumpBuffer.start()
@@ -37,6 +40,7 @@ func _physics_process(delta: float) -> void :
 		velocity.y = jump_velocity
 		jumping = true
 		coyote_time = false
+		$JumpSounds.play_sound()
 		$TallJump.start()
 	
 	if(velocity.y > 0 || !Input.is_action_pressed("Jump")) :

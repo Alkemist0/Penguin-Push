@@ -147,9 +147,9 @@ position = Vector2(1894, -18)
 [node name="SnowballEnemy4" parent="." instance=ExtResource("5_vmh5n")]
 position = Vector2(1492, 118)
 
+[node name="Spring" parent="." instance=ExtResource("6_1b1m7")]
+position = Vector2(1900, 350)
+
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_kcbtk")]
 position = Vector2(-111, 13)
 camera = NodePath("../Camera2D")
-
-[node name="Spring" parent="." instance=ExtResource("6_1b1m7")]
-position = Vector2(1900, 350)

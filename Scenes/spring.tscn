@@ -1,8 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cquhqp5aciqyg"]
+[gd_scene load_steps=15 format=3 uid="uid://cquhqp5aciqyg"]
 
 [ext_resource type="Script" path="res://Scripts/spring.gd" id="1_gxo4m"]
 [ext_resource type="Texture2D" uid="uid://bunvh8uqkb2xt" path="res://Sprites/tpln_l1.png" id="2_4bmtp"]
 [ext_resource type="Texture2D" uid="uid://bknleabmf6x0g" path="res://Sprites/tpln_l2.png" id="3_o6ir8"]
+[ext_resource type="Script" path="res://Scripts/sound_player.gd" id="4_fe6bq"]
+[ext_resource type="AudioStream" uid="uid://4xskv6rrjix4" path="res://Sound/jump_retrostyle_effect1.wav" id="5_altco"]
+[ext_resource type="AudioStream" uid="uid://bdnc7f550k0hg" path="res://Sound/jump_retrostyle_effect2.wav" id="6_xan6l"]
+[ext_resource type="AudioStream" uid="uid://co3rni05wmq3f" path="res://Sound/jump_retrostyle_effect3.wav" id="7_2l206"]
+[ext_resource type="AudioStream" uid="uid://csd0qa7qnpvq2" path="res://Sound/jump_retrostyle_effect4.wav" id="8_drvve"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwudm"]
 size = Vector2(200, 100)
@@ -127,5 +132,9 @@ libraries = {
 "": SubResource("AnimationLibrary_c5xra")
 }
 autoplay = "Closed"
+
+[node name="BounceSound" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("4_fe6bq")
+sounds = Array[AudioStreamWAV]([ExtResource("5_altco"), ExtResource("6_xan6l"), ExtResource("7_2l206"), ExtResource("8_drvve")])
 
 [connection signal="area_entered" from="SnowballDetector" to="." method="_on_snowball_detector_area_entered"]
