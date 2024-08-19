@@ -27,9 +27,11 @@ func _physics_process(delta: float) -> void :
 	if(velocity.x > 0) :
 		$Sprite2D.flip_h = false
 		$FloorChecker.scale = Vector2(1, 1)
+		$SnowballChecker.scale = Vector2(1, 1)
 	if(velocity.x < 0) :
 		$Sprite2D.flip_h = true
 		$FloorChecker.scale = Vector2(-1, 1)
+		$SnowballChecker.scale = Vector2(-1, 1)
 	
 	
 	##Move camera to be in front of player
@@ -44,7 +46,10 @@ func _physics_process(delta: float) -> void :
 	#ANIMATIONS
 	if(!$FloorChecker.has_overlapping_bodies()) :
 		$Sprite2D/AnimationPlayer.play("Balance")
-	else :
+	elif($SnowballChecker.has_overlapping_bodies()):
+		$Sprite2D/AnimationPlayer.play("Push")
+		$Sprite2D/AnimationPlayer.speed_scale = velocity.x / speed
+	else:
 		if(velocity.x != 0) :
 			$Sprite2D/AnimationPlayer.play("Run")
 			$Sprite2D/AnimationPlayer.speed_scale = velocity.x / speed
@@ -54,11 +59,15 @@ func _physics_process(delta: float) -> void :
 	if(Input.is_action_pressed("Left") && velocity.x > 0 || Input.is_action_pressed("Right") && velocity.x < 0) :
 		$Sprite2D/AnimationPlayer.play("Turn")
 	
+	if($SnowballChecker.has_overlapping_bodies()) :
+		$Sprite2D/AnimationPlayer.play("Push")
+		$Sprite2D/AnimationPlayer.speed_scale = velocity.x / speed
+	
 	if(!is_on_floor()) :
 		if(velocity.y < 0) :
 			$Sprite2D/AnimationPlayer.play("Jump")
 		else :
 			$Sprite2D/AnimationPlayer.play("Fall")
 	
-	if(velocity.x == 0) :
+	if(velocity.x == 0 && !$SnowballChecker.has_overlapping_bodies()) :
 		$Sprite2D/AnimationPlayer.speed_scale = 1

@@ -68,8 +68,9 @@ _data = {
 "Walk": SubResource("Animation_o1cjw")
 }
 
-[node name="SnowballEnemy" type="CharacterBody2D"]
-collision_mask = 10
+[node name="SnowballEnemy" type="CharacterBody2D" groups=["Snowball_Enemy"]]
+collision_layer = 16
+collision_mask = 26
 script = ExtResource("1_q0b6r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

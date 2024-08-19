@@ -21,6 +21,10 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
 
+[global_group]
+
+Snowball_Enemy=""
+
 [input]
 
 Left={
@@ -48,6 +52,8 @@ Jump={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Ground"
 2d_physics/layer_3="Snowball"
+2d_physics/layer_4="Snowball (Ground)"
+2d_physics/layer_5="Enemy"
 
 [rendering]
 
