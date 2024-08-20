@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkxwb7alqy2s7"]
+
+[ext_resource type="Script" path="res://Scripts/cloud_enemy.gd" id="1_brt3h"]
+[ext_resource type="Texture2D" uid="uid://btuwcbwe6isep" path="res://Sprites/enm3_p1.png" id="1_jcq45"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgavx"]
+size = Vector2(1267, 180)
+
+[node name="CloudEnemy" type="Node2D"]
+script = ExtResource("1_brt3h")
+wind_force = -20
+move_speed = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_jcq45")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 63
+gravity_point_center = Vector2(-1, 0)
+gravity_direction = Vector2(-1, 0)
+gravity = 1470.0
+linear_damp_space_override = 1
+linear_damp = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-633.5, 0)
+shape = SubResource("RectangleShape2D_vgavx")

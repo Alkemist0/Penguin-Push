@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void :
 		$JumpSounds.play_sound()
 		$TallJump.start()
 	
-	if(velocity.y > 0 || !Input.is_action_pressed("Jump")) :
+	if(velocity.y > 0 || !Input.is_action_pressed("Jump") || is_on_ceiling()) :
 		$TallJump.stop()
 	
 	# Get the input direction and handle the movement/deceleration.
@@ -107,7 +107,7 @@ func _physics_process(delta: float) -> void :
 	
 	if(velocity.x == 0) :
 		$Sprite2D/AnimationPlayer.speed_scale = 1
-
+	
 func _on_coyote_timeout() -> void:
 	coyote_time = false
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bhvpm4h3hiwn5"]
+[gd_scene load_steps=13 format=4 uid="uid://bhvpm4h3hiwn5"]
 
 [ext_resource type="Texture2D" uid="uid://lgrlilayc61c" path="res://Sprites/background_temp.png" id="1_4vo68"]
 [ext_resource type="Texture2D" uid="uid://dh0y7j2b7fpty" path="res://Sprites/1-1.png" id="1_aguju"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ba6jpse5s2eak" path="res://Scenes/snowball.tscn" id="4_uwiu2"]
 [ext_resource type="PackedScene" uid="uid://cpuvq8ea7787t" path="res://Scenes/snowball_enemy.tscn" id="5_vmh5n"]
 [ext_resource type="PackedScene" uid="uid://cquhqp5aciqyg" path="res://Scenes/spring.tscn" id="6_1b1m7"]
+[ext_resource type="PackedScene" uid="uid://bkxwb7alqy2s7" path="res://Scenes/cloud_enemy.tscn" id="8_oebb5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ij1sf"]
 texture = ExtResource("1_aguju")
@@ -126,9 +127,13 @@ sources/2 = SubResource("TileSetAtlasSource_gs6lk")
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(480, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
 texture = ExtResource("1_4vo68")
+
+[node name="CloudEnemy" parent="Camera2D" instance=ExtResource("8_oebb5")]
+position = Vector2(687, 108)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(5.96046e-08, 0)
@@ -155,5 +160,4 @@ position = Vector2(1492, 118)
 position = Vector2(1900, 350)
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_kcbtk")]
-position = Vector2(-111, 13)
 camera = NodePath("../Camera2D")
